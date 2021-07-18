@@ -1,28 +1,34 @@
+package Service.Impl;
+
+import Controller.MainController;
+import Entity.HotelEntity;
+import Service.MenuService;
+
 import java.io.IOException;
 import java.util.*;
 
-public class Menu {
+public class MenuServiceImpl implements MenuService {
     /*
     Run the menu for user to input the program
     */
-    public void getUserInputs(Hotels hot, MainController mainController) throws IOException {
+    public void getUserInputs(HotelServiceImpl hot, MainController mainController) throws IOException {
         boolean run = true;
         Scanner input = new Scanner(System.in);
         while (run) {
 
             System.out.println("Welcome to Miami, Please Enter Customer Type and Dates for Stay in DD/MM/YYYY format");
-            String inputs = input.next();
-            String[] inputSplit = inputs.split(":", 2);
-            String customerType = inputSplit[0];
-            String dates = inputSplit[1];
-            String[] datesList = dates.split(",", 10);
+            String inputs = input.nextLine();
+            String[] inputSplit = inputs.trim().split("\\s*:\\s*", 2);
+            String customerType = inputSplit[0].trim();
+            String dates = inputSplit[1].trim();
+            String[] datesList = dates.trim().split("\\s*,\\s*", 5);;
 
             String lowestPriceHotel = getLowestCostingHotel(customerType, datesList, hot);
             System.out.println(lowestPriceHotel);
         }
     }
 
-    public String getLowestCostingHotel(String customerType, String[] datesList, Hotels hot) {
+    public String getLowestCostingHotel(String customerType, String[] datesList, HotelServiceImpl hot) {
         List<HotelEntity> entityList = hot.getListOfHotels();
 
         List<HotelEntity> list = new ArrayList<>();

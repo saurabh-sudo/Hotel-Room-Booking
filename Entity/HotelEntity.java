@@ -1,3 +1,5 @@
+package Entity;
+
 public class HotelEntity implements Comparable<HotelEntity> {
 
     private String hotelName;

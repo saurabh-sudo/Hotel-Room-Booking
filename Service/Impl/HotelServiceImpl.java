@@ -1,17 +1,20 @@
+package Service.Impl;
+
+import Entity.HotelEntity;
+import Service.HotelService;
+
 import java.util.ArrayList;
-import java.io.FileNotFoundException;
-public class Hotels {
+
+public class HotelServiceImpl implements HotelService {
 	private ArrayList<HotelEntity> listOfHotels = new ArrayList<>();
 
 	private String choice;
 
-	/*
-	Hotels Constructor
-	*/
-	public Hotels(String csvInputs[][]) throws FileNotFoundException{
-		createListOfHotels(csvInputs);
+	public HotelServiceImpl(String[][] readCSVFile) {
+		createListOfHotels(readCSVFile);
 	}
 
+	@Override
 	public void createListOfHotels(String csvInputs[][]){
 		for(int i = 0; i < 6; i++){
 				String hotelName = csvInputs[i+1][0];
@@ -31,7 +34,5 @@ public class Hotels {
 	public ArrayList<HotelEntity> getListOfHotels() {
 		return listOfHotels;
 	}
-
-
 
 }

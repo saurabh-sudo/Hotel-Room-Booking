@@ -1,7 +1,11 @@
+package Service.Impl;
+
+import Service.ReadFromCSVService;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ReadFromCSV {
+public class ReadFromCSVServiceImpl implements ReadFromCSVService {
 
     private String[][] info;
 
