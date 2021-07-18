@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ReadFromCSVServiceImpl implements ReadFromCSVService {
 
-    private String[][] info;
+    private String[][] inputs;
 
     public String[][] readCSVFile() throws FileNotFoundException {
 
@@ -16,14 +16,14 @@ public class ReadFromCSVServiceImpl implements ReadFromCSVService {
         Scanner input = new Scanner(file);
 
         String line;
-        this.info = new String[7][7];
+        this.inputs = new String[7][7];
         int z = 0;
         while (input.hasNext()) {
             line = input.nextLine();
-            this.info[z] = line.split(",");
+            this.inputs[z] = line.split(",");
             z++;
         }
         input.close();
-        return info;
+        return inputs;
     }
 }

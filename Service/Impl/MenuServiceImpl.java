@@ -9,7 +9,7 @@ import java.util.*;
 
 public class MenuServiceImpl implements MenuService {
     /*
-    Run the menu for user to input the program
+    Run the MenuServiceImpl for user to input the program
     */
     public void getUserInputs(HotelServiceImpl hot, MainController mainController) throws IOException {
         boolean run = true;
@@ -29,31 +29,37 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public String getLowestCostingHotel(String customerType, String[] datesList, HotelServiceImpl hot) {
-        List<HotelEntity> entityList = hot.getListOfHotels();
+        List<HotelEntity> hotelEntityList = hot.getListOfHotels();
 
-        List<HotelEntity> list = new ArrayList<>();
+        List<HotelEntity> filteredList = new ArrayList<>();
 
         for (HotelEntity hotel :
-                entityList) {
-            double cost = 0;
+                hotelEntityList) {
+            double costOfRoom = 0;
             if (customerType.equals(hotel.getCustomerType())) {
                 for (String date :
                         datesList) {
                     String[] f = date.split("/");
-                    int d = Integer.parseInt(f[0]);
-                    int m = Integer.parseInt(f[1]) - 1;
-                    int y = Integer.parseInt(f[2]);
-                    GregorianCalendar calendar = new GregorianCalendar(y, m, d);
+                    int date1 = Integer.parseInt(f[0]);
+                    int month = Integer.parseInt(f[1]) - 1;
+                    int year = Integer.parseInt(f[2]);
+                    GregorianCalendar calendar = new GregorianCalendar(year, month, date1);
                     int start = calendar.get(Calendar.DAY_OF_WEEK);
+                    //for Sunday to work properly with inputs
+                    if(start == 1){
+                        start = 6;
+                    }else{
+                        start = start - 2;
+                    }
                     double[] rates = hotel.getRates();
-                    cost = cost + rates[start - 2];
+                    costOfRoom = costOfRoom + rates[start];
                 }
-                hotel.setTotalCost(cost);
-                list.add(hotel);
+                hotel.setTotalCost(costOfRoom);
+                filteredList.add(hotel);
             }
 
         }
-        Collections.sort(list);
-        return list.get(0).getHotelName();
+        Collections.sort(filteredList);
+        return filteredList.get(0).getHotelName();
     }
 }
