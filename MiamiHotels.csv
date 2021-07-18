@@ -1,0 +1,7 @@
+Hotel Name ,Hotel Star Rating,Customer Type, Mon,Tues,Wed,Thurs,Fri,Sat,Sun
+Lakewood, 3,Regular,110,110,110,160,110, 90, 90
+Lakewood, 3,Reward,80,80,80,80,80,80,80
+Bridgewood, 4,Regular,160,160,160,160,160, 60, 60
+Bridgewood, 4,Reward,110,110,110,110,110,50, 50
+Ridgewood, 5,Regular,220,220,220,220,220, 150, 150
+Ridgewood, 5,Reward,100,100,100,100,100,40, 40
